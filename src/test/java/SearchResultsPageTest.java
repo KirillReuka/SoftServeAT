@@ -3,7 +3,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class SearchResultsPageTest extends BaseTest{
+public class SearchResultsPageTest extends BaseTest {
 
     @DataProvider(name = "search")
     public Object[][] search() {
@@ -12,7 +12,7 @@ public class SearchResultsPageTest extends BaseTest{
                 { "Xiaomi Redmi 9A"},
                 { "Samsung Galaxy"},
                 { "Зеркало для макияжа Xiaomi"},
-                { "Набор инструментов Alloid"},
+                { "Набор инструментов"},
         };
     }
 
