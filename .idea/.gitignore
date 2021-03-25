@@ -8,6 +8,17 @@
 /httpRequests/
 .idea/
 idea/
+/.idea/
+/target/
+AT12.iml
+target/
+.idea
+compiler.xml
+jarRepositories.xml
+misc.xml
+vcs.xml
+workspace.xml
+.idea/
 ##############################
 ## Java
 ##############################
