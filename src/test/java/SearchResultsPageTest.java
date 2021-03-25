@@ -1,29 +1,36 @@
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class SearchResultsPageTest extends BaseTest{
 
-    @Test
-    public void test1() {
-        SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
-        searchResultsPage.search("Apple iPhone 11");
-        String titleFirst = driver.findElement(By.xpath("//span[@class='goods-tile__title'][1]")).getText();
-        Assert.assertTrue(titleFirst.contains("Apple iPhone 11"));
+    @DataProvider(name = "search")
+    public Object[][] search() {
+        return new Object[][] {
+                { "Apple iPhone 11"},
+                { "Xiaomi Redmi 9A"},
+                { "Samsung Galaxy"},
+                { "Зеркало для макияжа Xiaomi"},
+                { "Набор инструментов Alloid"},
+        };
     }
 
-    @Test
-    public void test2() {
+    @Test(dataProvider = "search")
+    public void comparingTitles(String item) {
         HomePage homePage = new HomePage(driver);
-        homePage.search("Apple iPhone 11");
+        homePage.search(item);
         String titleFirst = driver.findElement(By.xpath("//span[@class='goods-tile__title'][1]")).getText();
-        Assert.assertTrue(titleFirst.contains("Apple iPhone 11"));
+        Assert.assertTrue(titleFirst.contains(item));
     }
 
-    @Test
-    public void test3() {
+    @Test(dataProvider = "search")
+    public void addingToCart(String item) {
+        HomePage homePage = new HomePage(driver);
+        homePage.search(item);
         SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
-        searchResultsPage.search("Apple iPhone 11");
         searchResultsPage.navigateToProduct();
+        ProductPage productPage = new ProductPage(driver);
+        productPage.addToCart();
     }
 }

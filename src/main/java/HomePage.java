@@ -5,6 +5,8 @@ public class HomePage {
     WebDriver driver;
 
     private By userIcon = By.xpath("//rz-user/button");
+    private By searchField = By.xpath("//input[@name='search']");
+    private By searchButton = By.xpath("//button[text()=' Найти ']");
 
 
     public HomePage(WebDriver driver) {
@@ -18,7 +20,8 @@ public class HomePage {
     }
 
     public SearchResultsPage search(String searchQuery) {
-        SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
-        return searchResultsPage.search(searchQuery);
+        driver.findElement(searchField).sendKeys(searchQuery);
+        driver.findElement(searchButton).click();
+        return new SearchResultsPage(driver);
     }
 }
